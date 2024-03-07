@@ -262,8 +262,9 @@ var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":
                         url: 'https://hook.eu2.make.com/64pyy2l1vw33vc0xd5kchfszj9gsg76k',
                         data: jQuery(this).serialize(),
                         success: function(response) {
+				console.log(response);
                             if (response === 200) {
-				    console.log('si detecto');
+				    console.log("si detecto");
                                 window.location.href = 'https://www.flipsnack.com/68F969FF8D6/doc-20231212-wa0003_231213_143816-2/full-view.html';
                             } else if (response === 401) {
                                 alert('Login or password is incorrect.'); // Puedes cambiar esto a una lógica de presentación más elegante
