@@ -264,8 +264,10 @@ var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":
                         success: function(response) {
                             console.log(response);
                             // Redirigir solo si la respuesta es exitosa (código 200)
-                            if (response && response.statusCode === 200) {
+                            if (response && response.status === 200) {
                                 window.location.href = 'https://www.flipsnack.com/68F969FF8D6/doc-20231212-wa0003_231213_143816-2/full-view.html';
+                            } else if (response && response.status === 401) {
+                                alert('Login or password is incorrect.'); // Puedes cambiar esto a una lógica de presentación más elegante
                             }
                         },
                         error: function(error) {
